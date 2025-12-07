@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BI Source-to-Target Mapping Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>BI Source-to-Target Mapping Manager</h1>
+            <p class="subtitle">Manage your data warehouse mappings efficiently</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Left Panel - Add New Mapping -->
+            <div class="panel add-mapping-panel">
+                <h2>Add New Mapping</h2>
+                <form id="mappingForm">
+                    <div class="form-group">
+                        <label for="targetTable">Target Table *</label>
+                        <input type="text" id="targetTable" name="targetTable" required 
+                               placeholder="e.g., DIM_CUSTOMER">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="targetField">Target Field *</label>
+                        <input type="text" id="targetField" name="targetField" required 
+                               placeholder="e.g., CUSTOMER_NAME">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sourceTable">Source Table *</label>
+                        <input type="text" id="sourceTable" name="sourceTable" required 
+                               placeholder="e.g., STG_CUSTOMERS">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="sourceField">Source Field *</label>
+                        <input type="text" id="sourceField" name="sourceField" required 
+                               placeholder="e.g., CUST_NAME">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="transformation">Transformation / Manipulation</label>
+                        <textarea id="transformation" name="transformation" rows="3" 
+                                  placeholder="e.g., UPPER(TRIM(CUST_NAME))"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" name="notes" rows="2" 
+                                  placeholder="Additional notes or comments"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Add Mapping</button>
+                        <button type="button" class="btn btn-secondary" id="clearForm">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Panel - Mappings Tree View -->
+            <div class="panel tree-panel">
+                <div class="panel-header">
+                    <h2>Target Tables Hierarchy</h2>
+                    <div class="panel-actions">
+                        <button class="btn btn-small" id="expandAll">Expand All</button>
+                        <button class="btn btn-small" id="collapseAll">Collapse All</button>
+                        <button class="btn btn-small btn-success" id="exportExcel">Export to Excel</button>
+                        <button class="btn btn-small btn-info" id="importExcel">Import from Excel</button>
+                        <input type="file" id="fileInput" accept=".xlsx,.xls" style="display: none;">
+                    </div>
+                </div>
+
+                <div class="search-box">
+                    <input type="text" id="searchBox" placeholder="Search mappings...">
+                </div>
+
+                <div id="treeView" class="tree-view">
+                    <div class="empty-state">
+                        <p>No mappings yet. Add your first mapping to get started!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="stats-section">
+            <div class="stat-card">
+                <div class="stat-number" id="totalTargets">0</div>
+                <div class="stat-label">Target Tables</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalMappings">0</div>
+                <div class="stat-label">Total Mappings</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalSources">0</div>
+                <div class="stat-label">Source Tables</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Mapping</h2>
+                <span class="close">&times;</span>
+            </div>
+            <form id="editForm">
+                <input type="hidden" id="editIndex">
+                <div class="form-group">
+                    <label for="editTargetTable">Target Table *</label>
+                    <input type="text" id="editTargetTable" required>
+                </div>
+                <div class="form-group">
+                    <label for="editTargetField">Target Field *</label>
+                    <input type="text" id="editTargetField" required>
+                </div>
+                <div class="form-group">
+                    <label for="editSourceTable">Source Table *</label>
+                    <input type="text" id="editSourceTable" required>
+                </div>
+                <div class="form-group">
+                    <label for="editSourceField">Source Field *</label>
+                    <input type="text" id="editSourceField" required>
+                </div>
+                <div class="form-group">
+                    <label for="editTransformation">Transformation / Manipulation</label>
+                    <textarea id="editTransformation" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editNotes">Notes</label>
+                    <textarea id="editNotes" rows="2"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                    <button type="button" class="btn btn-secondary modal-cancel">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
