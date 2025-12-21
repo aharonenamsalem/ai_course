@@ -1,0 +1,21 @@
+{
+  "servers": {
+    "fake-store": {
+      "command": "/Users/aharonronen/venv_ai_course/bin/python",
+      "args": ["/Users/aharonronen/ai_course/mcp1/fake_store_server.py"]
+    },
+    "main1": {
+      "command": "/Users/aharonronen/venv_ai_course/bin/python",
+      "args": ["/Users/aharonronen/ai_course/lesson 6/main1.py"]
+    },
+    // "server-js": {
+    //   "command": "node",
+    //   "args": ["/Users/aharonronen/ai_course/lesson 6/server.js"]
+    // }
+   // {
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/"
+    }
+  }
+}
