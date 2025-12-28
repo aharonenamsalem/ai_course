@@ -1,0 +1,9 @@
+mcp
+fastmcp
+crewai
+crewai-tools[mcp]
+langchain-openai
+langchain-core
+python-dotenv
+json
+
