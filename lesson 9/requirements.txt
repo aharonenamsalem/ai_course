@@ -1,0 +1,11 @@
+langchain_openai
+langchain
+langchain_core
+langchain_community
+boto3
+botocore
+google-search-results
+wikipedia
+numexpr
+openai
+python-dotenv
